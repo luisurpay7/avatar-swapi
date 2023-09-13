@@ -3,7 +3,7 @@
 
 *   **Instalar JDK 17 y MySQL**
 *   **Clonar repositorio**
-*   **Levantar servidor de base de datos**
+*   **Levantar servidor de base de datos y crear BD llamada db_swapi**
 *   **Modificar archivo application.properties**
 
     Modificar credenciales de base de datos:
