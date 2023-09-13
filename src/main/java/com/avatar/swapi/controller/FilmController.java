@@ -35,8 +35,12 @@ public class FilmController {
 
     @GetMapping()
     public String listFilms(Model model){
-        //saveSwapiPeople();
-        //saveSwapiFims();
+        List<Film> films = filmService.getFilms();
+        if(films.isEmpty()){
+            System.out.println("ENTRA");
+            saveSwapiPeople();
+            saveSwapiFims();
+        }
         model.addAttribute("films", filmService.getFilms());
         return "films";
     }
@@ -50,7 +54,6 @@ public class FilmController {
             people.add(filmPeople.get(i).getPerson());
         }
         model.addAttribute("people", filmPeople);
-        System.out.println(people.get(0).getName());
         return "film_details";
     }
 
