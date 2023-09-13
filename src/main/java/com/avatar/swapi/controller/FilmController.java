@@ -18,7 +18,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
+
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -129,7 +133,9 @@ public class FilmController {
         film.setOpening_crawl(swapiFilm.getOpening_crawl());
         film.setDirector(swapiFilm.getDirector());
         film.setProducer(swapiFilm.getProducer());
-        //film.setRelease_date(swapiFilm.getRelease_date());
+        LocalDate localDate = LocalDate.parse(swapiFilm.getRelease_date());
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        film.setRelease_date(date);
         film.setCreated(swapiFilm.getCreated());
         film.setEdited(swapiFilm.getEdited());
         film.setUrl(swapiFilm.getUrl());
