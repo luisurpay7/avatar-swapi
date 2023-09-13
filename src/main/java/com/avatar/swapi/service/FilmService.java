@@ -5,6 +5,7 @@ import com.avatar.swapi.model.FilmPerson;
 import com.avatar.swapi.model.Person;
 import com.avatar.swapi.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -23,7 +24,7 @@ public class FilmService {
     private FilmRepository filmRepository;
 
     public List<Film> getFilms(){
-        return filmRepository.findAll();
+        return filmRepository.findAll(Sort.by(Sort.Direction.ASC, "episodeId"));
     }
 
     public Optional<Film> findById(Long id){

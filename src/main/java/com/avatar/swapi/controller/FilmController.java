@@ -37,7 +37,6 @@ public class FilmController {
     public String listFilms(Model model){
         List<Film> films = filmService.getFilms();
         if(films.isEmpty()){
-            System.out.println("ENTRA");
             saveSwapiPeople();
             saveSwapiFims();
         }
@@ -48,12 +47,6 @@ public class FilmController {
     @GetMapping("/{id}")
     public String getFilm(@PathVariable Long id, Model model){
         model.addAttribute("film", filmService.findById(id).get());
-        List<FilmPerson> filmPeople = filmService.findById(id).get().getFilmPeople();
-        List<Person> people = new ArrayList<>();
-        for(int i=0; i<filmPeople.size(); i++) {
-            people.add(filmPeople.get(i).getPerson());
-        }
-        model.addAttribute("people", filmPeople);
         return "film_details";
     }
 
@@ -132,7 +125,7 @@ public class FilmController {
         }
 
         film.setTitle(swapiFilm.getTitle());
-        film.setEpisode_id(swapiFilm.getEpisode_id());
+        film.setEpisodeId(swapiFilm.getEpisode_id());
         film.setOpening_crawl(swapiFilm.getOpening_crawl());
         film.setDirector(swapiFilm.getDirector());
         film.setProducer(swapiFilm.getProducer());

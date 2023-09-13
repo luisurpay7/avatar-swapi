@@ -16,7 +16,7 @@ public class Film {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private Integer episode_id;
+    private Integer episodeId;
 
     @Column(length = 1000)
     private String opening_crawl;
@@ -54,12 +54,12 @@ public class Film {
         this.title = title;
     }
 
-    public Integer getEpisode_id() {
-        return episode_id;
+    public Integer getEpisodeId() {
+        return episodeId;
     }
 
-    public void setEpisode_id(Integer episode_id) {
-        this.episode_id = episode_id;
+    public void setEpisodeId(Integer episode_id) {
+        this.episodeId = episode_id;
     }
 
     public String getOpening_crawl() {

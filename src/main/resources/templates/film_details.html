@@ -28,8 +28,8 @@
         </div>
         <div class="col-md-6">
             <p><b>Personajes: </b></p>
-            <tr th:each="person: ${people}">
-                <p th:text="${person.person.name}" ></p>
+            <tr th:each="filmPeople: ${film.filmPeople}">
+                <p th:text="${filmPeople.person.name}" ></p>
             </tr>
         </div>
 
