@@ -1,14 +1,12 @@
 package com.avatar.swapi.swapimodels;
 
-import com.avatar.swapi.model.Film;
-
 import java.util.List;
 
 public class SwapiFilms {
     private Long count;
     private String next;
     private String previous;
-    private List<Film> results;
+    private List<SwapiFilm> results;
 
     public Long getCount() {
         return count;
@@ -34,11 +32,11 @@ public class SwapiFilms {
         this.previous = previous;
     }
 
-    public List<Film> getResults() {
+    public List<SwapiFilm> getResults() {
         return results;
     }
 
-    public void setResults(List<Film> results) {
+    public void setResults(List<SwapiFilm> results) {
         this.results = results;
     }
 }

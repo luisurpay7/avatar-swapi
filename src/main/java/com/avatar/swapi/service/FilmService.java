@@ -1,6 +1,8 @@
 package com.avatar.swapi.service;
 
 import com.avatar.swapi.model.Film;
+import com.avatar.swapi.model.FilmPerson;
+import com.avatar.swapi.model.Person;
 import com.avatar.swapi.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -21,5 +23,9 @@ public class FilmService {
 
     public List<Film> getFilms(){
         return filmRepository.findAll();
+    }
+
+    public Film save(Film film) {
+        return filmRepository.save(film);
     }
 }

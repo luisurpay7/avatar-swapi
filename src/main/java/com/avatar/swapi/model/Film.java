@@ -1,5 +1,6 @@
 package com.avatar.swapi.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +17,8 @@ public class Film {
     private Long id;
     private String title;
     private Integer episode_id;
+
+    @Column(length = 1000)
     private String opening_crawl;
     private String director;
     private String producer;
@@ -25,14 +28,14 @@ public class Film {
     private String edited;
 
     @OneToMany(mappedBy = "film")
-    private List<FilmPerson> people;
+    private List<FilmPerson> filmPeople;
 
-    public List<FilmPerson> getPeople() {
-        return people;
+    public List<FilmPerson> getFilmPeople() {
+        return filmPeople;
     }
 
-    public void setPeople(List<FilmPerson> people) {
-        this.people = people;
+    public void setFilmPeople(List<FilmPerson> filmPeople) {
+        this.filmPeople = filmPeople;
     }
 
     public Long getId() {
