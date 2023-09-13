@@ -11,10 +11,10 @@ import com.avatar.swapi.swapimodels.SwapiFilms;
 import com.avatar.swapi.swapimodels.SwapiPeople;
 import com.avatar.swapi.swapimodels.SwapiPerson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
@@ -33,23 +33,26 @@ public class FilmController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @GetMapping
-    private String listFilms(Model model){
+    @GetMapping()
+    public String listFilms(Model model){
         //saveSwapiPeople();
         //saveSwapiFims();
         model.addAttribute("films", filmService.getFilms());
         return "films";
     }
-    /*
-    private ResponseEntity<List<Film>> listFilms(Model model){
-        //saveSwapiPeople();
-        //saveSwapiFims();
-        model.addAttribute("films", filmService.getFilms());
 
-
-        return ResponseEntity.ok(filmService.getFilms());
+    @GetMapping("/{id}")
+    public String getFilm(@PathVariable Long id, Model model){
+        model.addAttribute("film", filmService.findById(id).get());
+        List<FilmPerson> filmPeople = filmService.findById(id).get().getFilmPeople();
+        List<Person> people = new ArrayList<>();
+        for(int i=0; i<filmPeople.size(); i++) {
+            people.add(filmPeople.get(i).getPerson());
+        }
+        model.addAttribute("people", filmPeople);
+        System.out.println(people.get(0).getName());
+        return "film_details";
     }
-    * */
 
     private void saveSwapiPeople(){
         String url = "https://swapi.dev/api/people";

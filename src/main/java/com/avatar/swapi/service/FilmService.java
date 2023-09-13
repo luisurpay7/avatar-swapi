@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FilmService {
@@ -23,6 +24,11 @@ public class FilmService {
 
     public List<Film> getFilms(){
         return filmRepository.findAll();
+    }
+
+    public Optional<Film> findById(Long id){
+        Optional<Film> optionalFilm = filmRepository.findById(id);
+        return optionalFilm;
     }
 
     public Film save(Film film) {
